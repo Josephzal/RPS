@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rock Paper Scissors</title>
+  <style>
+    input {
+      font-size: 2em;
+      margin: 10px 10px 0;
+    }
+   
+   
+  </style>
+</head>
+
+<body>
+  
+  <p id="paragraph">Choose an action</p>
+  <p id="scores">You : 0 Computer : 0</p>
+  <button type="button" id="rButton" onclick="rockChoice()">Rock</button>
+  <button type="button" id="pButton" onclick="paperChoice()">Paper</button>
+  <button type="button" id="sButton" onclick="scissorsChoice()">Scissors</button>
+  <p id="messageToShow"></p>
+  <p></p>
+
+  <script>
+
+  var output = document.getElementById("messageToShow");
+  var outputScores = document.getElementById("scores");
+
+  var aiChoice = 0;
+  var aiChoiceString = "";
+  var playerChoice = "";
+  var aiWinCount = 0;
+  var playerWinCount = 0;
+  var message = "";
+  var scoreCount = "";
+
+  var rock = 1;
+  var paper = 1;
+  var scissors = 1;
+
+  function rockChoice(){
+    playerChoice = "Rock"; 
+    
+    console.log(game());
+    outputScores.innerHTML = scoreCount;
+    output.innerHTML = message;
+  } 
+  function paperChoice(){
+    playerChoice = "Paper"; 
+    
+    console.log(game());
+    outputScores.innerHTML = scoreCount;
+    output.innerHTML = message;
+  } 
+  function scissorsChoice(){
+    playerChoice = "Scissors"; 
+    
+    console.log(game()); 
+    outputScores.innerHTML = scoreCount;
+    output.innerHTML = message;
+  } 
+    
+
+  function computerPlay() {
+    aiChoice = Math.floor(Math.random() * 3) + 1;
+    if(aiChoice === 1) {
+      
+      aiChoiceString = "Rock";
+    } 
+    else if(aiChoice === 2) {
+   
+      aiChoiceString = "Paper";
+    }
+    else {
+      
+      aiChoiceString = "Scissors";
+    }
+ }
+
+
+  function playRound(playerChoice, aiChoice) {
+
+    computerPlay();
+   
+
+    if(aiChoiceString == playerChoice) {
+      message = "Tie.";
+      return "Tie.";
+    }
+
+    else if((aiChoiceString === "Rock" && playerChoice === "Scissors") ||
+    (aiChoiceString === "Paper" && playerChoice === "Rock") ||
+    (aiChoiceString === "Scissors" && playerChoice === "Paper")) {
+      aiWinCount++;
+      message = playerChoice + " is beat by " + aiChoiceString + ". Computer wins the round.";
+      return playerChoice + " is beat by " + aiChoiceString + ". Computer wins the round.";
+
+    }
+
+    
+    else {
+      playerWinCount++;
+      message = playerChoice + " beats " + aiChoiceString +". You win the round.";
+      return playerChoice + " beats " + aiChoiceString +". You win the round.";
+    }
+  
+  }
+
+  var winner = false;  
+
+  function game() {
+     
+    
+      console.log(playRound(playerChoice, aiChoice));
+      console.log("Score = You : " + playerWinCount + " Computer : " + aiWinCount);
+      scoreCount = ("You : " + playerWinCount + " Computer : " + aiWinCount);
+      if(aiWinCount == 5) {
+        winner = true;
+        document.getElementById("rButton").disabled = true;
+        document.getElementById("pButton").disabled = true;
+        document.getElementById("sButton").disabled = true;
+        message = "Computer wins the game."
+        return "Computer wins the game.";
+      }
+      else if(playerWinCount == 5) {
+        winner = true;
+        document.getElementById("rButton").disabled = true;
+        document.getElementById("pButton").disabled = true;
+        document.getElementById("sButton").disabled = true;
+        message = "You win the game.";
+        return "You win the game.";
+      }
+      
+    
+  }
+
+
+  </script>
+</body>
+</html>
