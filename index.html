@@ -6,10 +6,10 @@
   <style>
 
     body {
-      background-color: #97af96;
+      background-color: #3d3d3d;
     }
     .buttons:hover{
-      box-shadow: 4px 4px 4px rgba(0,0,0,0.1), 4px 4px 4px rgba(0,0,0,0.1);
+      box-shadow: 10px 10px 10px rgba(0,0,0,0.1), 10px 10px 10px rgba(0,0,0,0.1);
     }
     .buttons {
       position: relative;
@@ -27,6 +27,7 @@
       display:block;
       margin: 0 auto;
       size: 20px;
+      right: 20px;
       top: 100px;
       text-align: center;
       width: 470px;
@@ -75,7 +76,7 @@
 </head>
 
 <body>
-  <p id="scores">You : 0 Computer : 0</p>
+  <p id="scores">Make a choice to begin</p>
   <button class="buttons" type="button" id="rButton" onclick="rockChoice()"></button>
   <button class="buttons" type="button" id="pButton" onclick="paperChoice()"></button>
   <button class="buttons" type="button" id="sButton" onclick="scissorsChoice()"></button>
@@ -173,7 +174,7 @@
 
       console.log(playRound(playerChoice, aiChoice));
       
-      scoreCount = ("You : " + playerWinCount + " Computer : " + aiWinCount);
+      scoreCount = ("You : " + playerWinCount + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Computer : " + aiWinCount);
       if(aiWinCount == 5) {
         winner = true;
         document.getElementById("rButton").disabled = true;
